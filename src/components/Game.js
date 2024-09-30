@@ -65,6 +65,7 @@ function Game() {
       <button onClick={handlRestart} className="restart-btn">
         Restart
       </button>
+      <p>Branch Test</p>
     </div>
   );
 }
