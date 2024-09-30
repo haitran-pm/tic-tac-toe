@@ -8,7 +8,8 @@ function Game() {
 
   //Declaring a Winner
   useEffect(() => {
-    "Your code here";
+    const newWinner = calculateWinner(squares);
+    setWinner(newWinner);
   }, [squares]);
 
   //function to check if a player has won.
@@ -39,20 +40,26 @@ function Game() {
   };
 
   //Handle player
-  const handleClick = (e) => {
-    // "Your code here";
-    // Branch Test
+  const handleClick = (i) => {
+    console.log(squares);
+    const newSquares = squares.slice();
+    console.log(newSquares);
+    console.log(i);
 
-    xIsNext ? (e.target.innerText = "X") : (e.target.innerText = "O");
-    setXIsNext(1 - xIsNext);
+    if (calculateWinner(newSquares) || newSquares[i]) {
+      return;
+    }
+
+    newSquares[i] = xIsNext ? "X" : "O";
+
+    setSquares(newSquares);
+    setXIsNext((prevState) => !prevState);
   };
 
   //Restart game
   const handlRestart = () => {
-    // "Your code here";
     setSquares(Array(9).fill(null));
     setXIsNext(true);
-    console.log("Reset");
   };
 
   return (
