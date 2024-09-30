@@ -41,7 +41,7 @@ function Game() {
   //Handle player
   const handleClick = (e) => {
     // "Your code here";
-    // Branch Test
+    // Branch Main
 
     xIsNext ? (e.target.innerText = "X") : (e.target.innerText = "O");
     setXIsNext(1 - xIsNext);
