@@ -47,43 +47,27 @@ function Game() {
 
   //Handle player
   const handleClick = (i) => {
-    // Copy squares array to new array to process
-    // const newSquares = history[history.length - 1].squares;
-    // console.log(newSquares);
-
-    const currentHistory = history.slice(0, currentStep + 1);
-    const current = currentHistory[currentHistory.length - 1];
-    const squares = current.squares.slice();
-
-    // console.log(currentStep);
-    // console.log(currentHistory);
-    // console.log(current);
-    // console.log(squares);
+    const newHistory = [...history]; // Copy all history to a new array
+    const newSquares = [...newHistory[currentStep].squares]; // Copy all array squares to a new array
 
     // Stop the game
-    if (squares[i] || calculateWinner(squares)) return;
+    if (newSquares[i] || calculateWinner(newSquares)) return;
 
     // Set value for clicked item
-    squares[i] = xIsNext ? "X" : "O";
+    newSquares[i] = xIsNext ? "X" : "O";
 
+    // Add new squares to array history
     setHistory(
-      currentHistory.concat([
+      newHistory.concat([
         {
-          squares: squares,
+          squares: newSquares,
         },
       ])
     );
 
-    // Save the new step
-    // const newHistory = history.concat([{ squares: newSquares }]);
-
-    // console.log(newHistory);
-
     // Update states
-    setCurrentStep(currentHistory.length);
+    setCurrentStep(newHistory.length);
     setXIsNext(1 - xIsNext);
-    // setHistory(history.concat([{ squares: newSquares }]));
-    // console.log(history);
   };
 
   //Go to a specify step
@@ -94,7 +78,6 @@ function Game() {
 
   //Restart game
   const handlRestart = () => {
-    // "Your code here";
     setXIsNext(true);
     setHistory([
       {
